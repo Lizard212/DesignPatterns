@@ -143,13 +143,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="AdapterOne.h" />
-    <ClInclude Include="AdapterTwo.h" />
-    <ClInclude Include="IAdapter.h" />
-    <ClInclude Include="LibraryOne.h" />
-    <ClInclude Include="LibraryTwo.h" />
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

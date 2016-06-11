@@ -1,21 +1,62 @@
-#include"AdapterOne.h"
-#include"AdapterTwo.h"
-#include"IAdapter.h"
+#include <iostream>
 using namespace std;
+
+class USASocketInterface
+{
+public:
+	virtual void PlugIn() = 0;
+};
+
+class VietnamSocketInterface
+{
+public:
+	virtual void PlugIn() = 0;
+};
+
+class VietnamSocket :public VietnamSocketInterface
+{
+public:
+	void PlugIn()
+	{
+		cout << "PlugedIn vietnamesocket";
+	}
+};
+
+class ElectricIron
+{
+private:
+	USASocketInterface* pInterface;
+public:
+	void PlugIn(USASocketInterface* pInterface)
+	{
+		cout << "Electric Iron plugged in adapter" << endl;
+	}
+};
+
+class Adapter : public USASocketInterface
+{
+private:
+	VietnamSocketInterface* pInterface;
+public:
+	Adapter(VietnamSocketInterface* pVietnamInterface)
+	{
+		pInterface = pVietnamInterface;
+	}
+	void PlugIn()
+	{
+		cout << "Adapter Plugged In to Indian Socket" << endl;
+	}
+};
+
 
 int main()
 {
-	IAdapter *adapter;
+	VietnamSocket* pSocket = new VietnamSocket();
+	Adapter* adapter = new Adapter(pSocket);
 
-	adapter = new AdapterOne();
-	adapter->Do();
-
-	delete adapter;
-
-	adapter = new AdapterTwo();
-	adapter->Do();
-	delete adapter;
-
+	adapter->PlugIn();
+	ElectricIron* pIron = new ElectricIron();
+	pIron->PlugIn(adapter);
 	system("pause");
 	return 0;
 }
